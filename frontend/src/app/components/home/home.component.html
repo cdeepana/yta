@@ -1,0 +1,123 @@
+<div class="container text-center">
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAuthor">add author</button>
+        <button type="button" class="btn btn-primary"></button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBook">add a book</button>
+      </div>
+
+    <ul class="list-group" *ngFor="let book of libraryBookList let i = index">
+        <li class="list-group-item"
+        (click)="OpenBookDetails(book)" data-bs-toggle="modal" data-bs-target="#bookView"
+        >{{i+1}} : {{book.name}}</li>
+      </ul>
+</div>
+
+<div class="modal fade" id="bookView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Book Details</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{bookInfo.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Isbn</td>
+                            <td>{{bookInfo.isbn}}</td>
+                        </tr>
+                        <tr>
+                            <td>Author</td>
+                            <td>{{bookInfo.authorBy}} </td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addAuthor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Author</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">First Name</span>
+                        <input type="text" class="form-control" placeholder="first name" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="author.fname">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Last Name</span>
+                        <input type="text" class="form-control" placeholder="last name" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="author.lname">
+                      </div>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button (click)="saveAuthor()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="bookInfo.name">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Isbn</span>
+                        <input type="text" class="form-control" placeholder="last name" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="bookInfo.isbn">
+                      </div>
+                </table>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Author List
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" *ngFor="let author of authorList" (click)="getAuthorFromDropList(author)">{{author.first_name}}</a></li>
+                    </ul>
+                  </div>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="saveBook()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                success or fail
+            </div>
+            <div class="modal-body">
+                somee meessage
+            </div>
+        </div>
+    </div>
+</div>
